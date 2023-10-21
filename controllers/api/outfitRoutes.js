@@ -4,9 +4,9 @@ const { Outfit } = require('../../models');
 // Create new outfit
 router.post('/', async (req, res) => {
     try {
-        const newOutfit = await Outfit.create(req.body);
+        const newFit = await Outfit.create(req.body);
 
-        res.status(200).json(newOutfit);
+        res.status(200).json(newFit);
 
     } catch (err) {
         res.status(500).json(err);
@@ -14,3 +14,42 @@ router.post('/', async (req, res) => {
 });
 
 // Delete user outfit
+router.delete('/:id', async (req, res) => {
+    try {
+        const deleteFit = await Outfit.delete({
+            where: {
+                id: req.params.id
+            }
+        });
+
+        if (!deleteFit) {
+            res.status(404).json({ message: 'Requested ID not found.' })
+        };
+
+        res.status(200).json(deleteFit);
+
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+// Post route for liking an outfit
+// Need likes column for outfits
+router.post('/like/:id', async (req, res) => {
+    try {
+        const fitData = await Outfit.findByPk(req.params.id);
+        if (fitData) {
+            fitData.likes += 1;
+            await fitData.save();
+            await res.status(200).json({ message: 'Outfit liked!' });
+        } else {
+            res.status(404).json({ message: 'Outfit with specified ID not found.' })
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+// Post comment about an outfit
+// Need a table/column in db to save comments to
+router.post('/comment', async (req, res) => {});
