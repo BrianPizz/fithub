@@ -1,23 +1,46 @@
 const router = require('express').Router();
 const { User, Outfit } = require('../models');
-// Will add authCheck to routes later
+// Add authCheck to routes later
 const authCheck = require('../utils/auth');
 
 router.get('/', async (req, res) => {
-    // Load landing page. Slide 4 of presentation.
-    console.log('Landing Page')
+    // Display landing page. Slide 4 of presentation.
+    // res.render('landing');
+    console.log('Landing Page');
 });
 
 router.get('/homepage', async (req, res) => {
-    // Load home page. Slide 6.
-    console.log('Home Page')
-})
+    // Display home page. Slide 6.
+    // Need to find top 3 most liked outfits
+    try {
+        sql = `
+        SELECT * FROM Outfit
+        ORDER BY likes DESC
+        LIMIT 3
+        `
+        const topFits = await sequelize.query(sql, {
+            type: QueryTypes.SELECT,
+            model: Outfit,
+        });
+
+        if(!topFits) {
+            res.status(404).json({ message: 'Error finding top outfits data.' })
+        }
+
+        const outfits = topFits.map((outfit) => outfit.get({ plain: true }));
+
+        res.render('homepage', { outfits });
+        
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 
 router.get('/login', (req, res) => {
     if (req.session.logged_in) {
-      res.redirect('/homepage');
-      return;
+        res.redirect('/homepage');
+        return;
     }
     // Match login handlebars filename
     res.render('login');
-  });
+});
