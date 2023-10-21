@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {} = require('../models');
+const { User, Outfit } = require('../models');
 // Will add authCheck to routes later
 const authCheck = require('../utils/auth');
 
