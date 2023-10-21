@@ -1,13 +1,27 @@
 const router = require('express').Router();
-const { Outfit } = require('../../models');
+const { Outfit, OutfitProducts } = require('../../models');
 
 // Create new outfit
 router.post('/', async (req, res) => {
+    /* req.body example:
+        {
+            outfit_name: "Example",
+            user_id: 1,
+            productIds: [1, 2, 3]
+        }
+    */
     try {
         const newFit = await Outfit.create(req.body);
 
-        res.status(200).json(newFit);
+        if (newFit) {
+            const productArr = req.body.productIds;
+            const newFitProducts = productArr.map((productId) => ({ outfit_id: newFit.id, product_id: productId }));
+            await OutfitProducts.bulkCreate(newFitProducts);
 
+            res.status(201).json(newFit);
+        } else {
+            res.status(400).json({ message: 'Failed to create new outfit, please try again.' });
+        }
     } catch (err) {
         res.status(500).json(err);
     }
