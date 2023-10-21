@@ -1,36 +1,83 @@
 const router = require('express').Router();
-const { User, Outfit } = require('../models');
+const { Product, Outfit, OutfitProducts, Category, User } = require('../models');
 // Add authCheck to routes later
 const authCheck = require('../utils/auth');
 
+// Displaying landing page. Slide 4 of proposal.
 router.get('/', async (req, res) => {
-    // Display landing page. Slide 4 of presentation.
-    // res.render('landing');
-    console.log('Landing Page');
+
+    res.render('landing');
 });
 
+// Displaying homepage. Slide 6.
 router.get('/homepage', async (req, res) => {
-    // Display home page. Slide 6.
-    // Need to find top 3 most liked outfits
+    
+    // Finding top 3 most liked outfits to display on homepage.
+    // Need likes column in outfits model.
+
     try {
-        sql = `
-        SELECT * FROM Outfit
-        ORDER BY likes DESC
-        LIMIT 3
-        `
-        const topFits = await sequelize.query(sql, {
-            type: QueryTypes.SELECT,
-            model: Outfit,
+        const topFits = await Outfit.findAll({
+            order: [['likes', 'DESC']],
+            limit: 3,
+            include: [{ model: Product, through: OutfitProducts }]
         });
 
-        if(!topFits) {
+        if (!topFits) {
             res.status(404).json({ message: 'Error finding top outfits data.' })
         }
 
         const outfits = topFits.map((outfit) => outfit.get({ plain: true }));
 
         res.render('homepage', { outfits });
+
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+// Route to page where user can put together a fit.
+router.get('/yours', async (req, res) => {
+    try {
+
+        // Finding all products for each category of clothing to display.
+        // Need to rewrite after seeds and handlebars finished (category_id and url/view).
+
+        // Tops
+        const topData = await Product.findAll({
+            where: { category_id: 1 }
+        });
+
+        if(!topData) {
+            res.status(404).json({ message: 'Could not find products matching this category.' })
+        };
+
+        const tops = topData.map((product) => product.map({ plain: true }));
         
+        // Bottoms
+        const bottomData = await Product.findAll({
+            where: { category_id: 2 }
+        });
+
+        if(!bottomData) {
+            res.status(404).json({ message: 'Could not find products matching this category.' })
+        };
+
+        const bottoms = bottomData.map((product) => product.map({ plain: true })); 
+
+        // Shoes
+        const shoeData = await Product.findAll({
+            where: { category_id: 2 }
+        });
+
+        if(!shoeData) {
+            res.status(404).json({ message: 'Could not find products matching this category.' })
+        };
+
+        const shoes = shoeData.map((product) => product.map({ plain: true })); 
+
+
+        res.render('yours', { tops, bottoms, shoes });
+
     } catch (err) {
         res.status(500).json(err);
     }
@@ -41,6 +88,6 @@ router.get('/login', (req, res) => {
         res.redirect('/homepage');
         return;
     }
-    // Match login handlebars filename
+    // Match to login handlebars filename
     res.render('login');
 });

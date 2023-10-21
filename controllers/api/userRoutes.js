@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
             res.status(200).json(newUser);
         });
     } catch (err) {
-        res.status(400).json(err);
+        res.status(500).json(err);
     }
 });
 
@@ -21,18 +21,14 @@ router.post('/login', async (req, res) => {
         const userData = await User.findOne({ where: { email: req.body.email } });
 
         if (!userData) {
-            res
-                .status(400)
-                .json({ message: 'Email was not found, please try again.' });
+            res.status(400).json({ message: 'Email was not found, please try again.' });
             return;
         }
 
         const passwordCheck = await userData.checkPassword(req.body.password);
 
         if (!passwordCheck) {
-            res
-                .status(400)
-                .json({ message: 'Incorrect password was entered, please try again.' });
+            res.status(400).json({ message: 'Incorrect password was entered, please try again.' });
             return;
         }
 
@@ -44,7 +40,7 @@ router.post('/login', async (req, res) => {
         });
 
     } catch (err) {
-        res.status(400).json(err);
+        res.status(500).json(err);
     }
 });
 
