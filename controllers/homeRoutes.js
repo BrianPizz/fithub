@@ -54,7 +54,7 @@ router.get('/create', async (req, res) => {
             res.status(404).json({ message: 'Could not find products matching this category.' })
         };
 
-        const tops = topData.map((product) => product.map({ plain: true }));
+        const tops = topData.map((product) => product.get({ plain: true }));
         
         // Bottoms
         const bottomData = await Product.findAll({
@@ -65,18 +65,18 @@ router.get('/create', async (req, res) => {
             res.status(404).json({ message: 'Could not find products matching this category.' })
         };
 
-        const bottoms = bottomData.map((product) => product.map({ plain: true })); 
+        const bottoms = bottomData.map((product) => product.get({ plain: true })); 
 
         // Shoes
         const shoeData = await Product.findAll({
-            where: { category_id: 2 }
+            where: { category_id: 3 }
         });
 
         if(!shoeData) {
             res.status(404).json({ message: 'Could not find products matching this category.' })
         };
 
-        const shoes = shoeData.map((product) => product.map({ plain: true })); 
+        const shoes = shoeData.map((product) => product.get({ plain: true })); 
 
 
         res.render('create', { tops, bottoms, shoes });
@@ -85,6 +85,31 @@ router.get('/create', async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+// Route for top outfits page, displaying comments
+router.get('/topfits', async (req, res) => {
+    try {
+        // Top outfit data
+        const topFits = await Outfit.findAll({
+            order: [['likes', 'DESC']],
+            limit: 3,
+            include: [{ model: Product, through: OutfitProducts }]
+        });
+
+        if (!topFits) {
+            res.status(404).json({ message: 'Error finding top outfits data.' })
+        }
+
+        const outfits = topFits.map((outfit) => outfit.get({ plain: true }));
+
+        // Get saved comments data if needed.
+
+        res.render('topfits', { outfits });
+
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
 
 // Displaying login page
 router.get('/login', (req, res) => {
