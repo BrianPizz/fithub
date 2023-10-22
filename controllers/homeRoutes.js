@@ -34,10 +34,6 @@ router.get('/homepage', async (req, res) => {
     }
 });
 
-// Need route for viewing top outfits with comment section. Slide 7.
-
-// Create another route to display user's saved outfits?
-
 // Route to page where user can create a new outfit.
 router.get('/create', async (req, res) => {
     try {
@@ -47,7 +43,8 @@ router.get('/create', async (req, res) => {
 
         // Tops
         const topData = await Product.findAll({
-            where: { category_id: 1 }
+            where: { category_id: 1 },
+            include: { model: Category }
         });
 
         if(!topData) {
@@ -58,7 +55,8 @@ router.get('/create', async (req, res) => {
         
         // Bottoms
         const bottomData = await Product.findAll({
-            where: { category_id: 2 }
+            where: { category_id: 2 },
+            include: { model: Category }
         });
 
         if(!bottomData) {
@@ -69,7 +67,8 @@ router.get('/create', async (req, res) => {
 
         // Shoes
         const shoeData = await Product.findAll({
-            where: { category_id: 3 }
+            where: { category_id: 3 },
+            include: { model: Category }
         });
 
         if(!shoeData) {
@@ -102,7 +101,7 @@ router.get('/topfits', async (req, res) => {
 
         const outfits = topFits.map((outfit) => outfit.get({ plain: true }));
 
-        // Get saved comments data if needed.
+        // Get saved comments data if needed from a different table.
 
         res.render('topfits', { outfits });
 
