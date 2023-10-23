@@ -4,9 +4,8 @@ const authCheck = require('../utils/auth');
 
 // Displaying user data
 router.get('/', async (req, res) => {
-
-    // Finding user's saved outfits
     try {
+        // Finding user's saved outfits
         const userData = await Outfit.findAll({
             where: { user_id: req.session.user_id },
             include: [{ model: Product, through: OutfitProducts }]
@@ -18,14 +17,6 @@ router.get('/', async (req, res) => {
 
         const outfits = userData.map((outfit) => outfit.get({ plain: true }));
 
-        res.render('yours', { outfits });
-
-    } catch (err) {
-        res.status(500).json(err);
-    };
-
-    // Finding product data to update user outfits
-    try {
         // Tops
         const topData = await Product.findAll({
             where: { category_id: 1 },
@@ -86,7 +77,8 @@ router.get('/', async (req, res) => {
 
         const onesies = onepieceData.map((product) => product.get({ plain: true }));
 
-        res.render('create', { tops, bottoms, shoes, accessories, onesies });
+        // Render all of the above to dashboard
+        res.render('dashboard', { outfits, tops, bottoms, shoes, accessories, onesies });
 
     } catch (err) {
         res.status(500).json(err);
