@@ -1,0 +1,37 @@
+[
+    {
+      "brand_name": "Jordan",
+      "season": "N/A",
+      "retail_price": "$180"
+    },
+    {
+        "brand_name": "Commes Des Garcon",
+        "season": "N/A",
+        "retail_price": "$160"
+    },
+    {
+        "brand_name": "Doc Martins",
+        "season": "N/A",
+        "retail_price": "$150"
+    },
+    {
+        "brand_name": "Golf Le Fleur",
+        "season": "N/A",
+        "retail_price": "$305"
+    },
+    {
+        "brand_name": "Suicoke",
+        "season": "N/A",
+        "retail_price": "$450"
+    },
+    {
+        "brand_name": "Miu Miu",
+        "season": "N/A",
+        "retail_price": "$1080"
+    },
+    {
+        "brand_name": "Prada",
+        "season": "N/A",
+        "retail_price": "$1790"
+    }
+  ]
