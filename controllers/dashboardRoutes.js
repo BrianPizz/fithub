@@ -17,6 +17,7 @@ router.get('/', async (req, res) => {
 
         const outfits = userData.map((outfit) => outfit.get({ plain: true }));
 
+        // For outfit editing
         // Tops
         const topData = await Product.findAll({
             where: { category_id: 1 },
