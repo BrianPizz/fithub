@@ -8,26 +8,23 @@ router.get('/', async (req, res) => {
     res.render('landing');
 });
 
-// Displaying homepage. Slide 6.
-router.get('/homepage', async (req, res) => {
-    
-    // Finding top 3 most liked outfits to display on homepage.
-    // Need likes column in outfits model.
+// Displaying yours.
+router.get('/yours', async (req, res) => {
 
+    // Finding user's saved outfits
     try {
-        const topFits = await Outfit.findAll({
-            order: [['likes', 'DESC']],
-            limit: 3,
+        const userData = await Outfit.findAll({
+            where: { user_id: req.session.user_id },
             include: [{ model: Product, through: OutfitProducts }]
         });
 
-        if (!topFits) {
-            res.status(404).json({ message: 'Error finding top outfits data.' })
-        }
+        if (!userData) {
+            res.status(404).json({ message: 'Error finding user data.' })
+        };
 
-        const outfits = topFits.map((outfit) => outfit.get({ plain: true }));
+        const outfits = userData.map((outfit) => outfit.get({ plain: true }));
 
-        res.render('homepage', { outfits });
+        res.render('yours', { outfits });
 
     } catch (err) {
         res.status(500).json(err);
@@ -116,6 +113,6 @@ router.get('/login', (req, res) => {
         res.redirect('/homepage');
         return;
     }
-    // Match to login handlebars filename
+
     res.render('login');
 });
