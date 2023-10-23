@@ -38,5 +38,17 @@
     {
         "outfit_id": 3,
         "product_id": 26
+    },
+    {
+        "outfit_id": 4,
+        "product_id": 3
+    },
+    {
+        "outfit_id": 4,
+        "product_id": 9
+    },
+    {
+        "outfit_id": 4,
+        "product_id": 19
     }
 ]
