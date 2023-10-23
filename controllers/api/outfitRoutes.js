@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
 
         if (newFit) {
             const productArr = req.body.productIds;
-            const newFitProducts = productArr.map((productId) => ({ outfit_id: newFit.id, product_id: productId }));
+            const newFitProducts = productArr.map((productID) => ({ outfit_id: newFit.id, product_id: productID }));
             await OutfitProducts.bulkCreate(newFitProducts);
 
             res.status(201).json(newFit);
@@ -50,6 +50,42 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+// Updating user outfit
+router.put('/:id', async (req, res) => {
+    try {
+    /* req.body example:
+        {
+            outfit_name: "Example",
+            productIds: [1, 2, 3]
+        }
+    */
+        const outfitID = req.params.id;
+        const productArr = req.body.productIds;
+
+        await Outfit.update(
+            {
+                outfit_name: req.body.outfit_name
+            },
+            {
+                where: {
+                    id: outfitID,
+                    user_id: req.session.user_id
+                }
+            }
+        );
+
+        await OutfitProducts.destroy({
+            where: { outfit_id: outfitID }
+        });
+        
+        const newFitProducts = productArr.map((productID) => ({ outfit_id: outfitID, product_id: productID }));
+        await OutfitProducts.bulkCreate(newFitProducts);
+        
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 // Post route for liking an outfit
 router.post('/like/:id', async (req, res) => {
     try {
@@ -61,24 +97,6 @@ router.post('/like/:id', async (req, res) => {
         } else {
             res.status(404).json({ message: 'Outfit with specified ID not found.' })
         }
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
-
-router.put('/:id', async (req, res) => {
-    try {
-        Outfit.update(
-            {
-                where: {
-                    id: req.params.id,
-                    user_id: req.session.user_id
-                }
-            },
-            {
-                
-            }
-        )
     } catch (err) {
         res.status(500).json(err);
     }
