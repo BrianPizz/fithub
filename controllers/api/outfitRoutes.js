@@ -34,7 +34,8 @@ router.delete('/:id', async (req, res) => {
     try {
         const deleteFit = await Outfit.delete({
             where: {
-                id: req.params.id
+                id: req.params.id,
+                user_id: req.session.user_id
             }
         });
 
@@ -50,7 +51,6 @@ router.delete('/:id', async (req, res) => {
 });
 
 // Post route for liking an outfit
-// Need likes column for outfits
 router.post('/like/:id', async (req, res) => {
     try {
         const fitData = await Outfit.findByPk(req.params.id);
@@ -67,5 +67,5 @@ router.post('/like/:id', async (req, res) => {
 });
 
 // Post comment about an outfit
-// Need a table/column in db to save comments to
-router.post('/comment', async (req, res) => {});
+// May add later
+// router.post('/comment', async (req, res) => {});
