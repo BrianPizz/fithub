@@ -17,8 +17,8 @@ const seedDatabase = async () => {
 
     const category = await Category.bulkCreate(categoryData);
     const product = await Product.bulkCreate(productData);
-    const outfitProducts = await OutfitProducts.bulkCreate(outfitProductData);
     const outfit = await Outfit.bulkCreate(outfitData);
+    const outfitProducts = await OutfitProducts.bulkCreate(outfitProductData);
 
     process.exit(0)
 
