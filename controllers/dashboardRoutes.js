@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Product, Outfit, OutfitProducts, Category, User } = require('../models');
+const { Product, Outfit, OutfitProducts, Category } = require('../models');
 const authCheck = require('../utils/auth');
 
 // Displaying user data
