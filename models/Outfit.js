@@ -15,6 +15,10 @@ Outfit.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        likes: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+        },
         user_id: {
             type: DataTypes.INTEGER,
             references: {
