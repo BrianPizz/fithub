@@ -8,10 +8,8 @@ router.get('/', async (req, res) => {
     res.render('landing');
 });
 
-// Displaying yours.
+// Displaying user's saved outfits
 router.get('/yours', async (req, res) => {
-
-    // Finding user's saved outfits
     try {
         const userData = await Outfit.findAll({
             where: { user_id: req.session.user_id },
@@ -105,7 +103,7 @@ router.get('/create', async (req, res) => {
     }
 });
 
-// Route for top outfits page, displaying comments
+// Route for top outfits page
 router.get('/topfits', async (req, res) => {
     try {
         // Top outfit data

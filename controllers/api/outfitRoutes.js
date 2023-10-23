@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
     */
     try {
         const newFit = await Outfit.create({
-            ...req.body,
+            outfit_name: req.body.outfit_name,
             user_id: req.session.user_ud
         });
 
@@ -61,6 +61,24 @@ router.post('/like/:id', async (req, res) => {
         } else {
             res.status(404).json({ message: 'Outfit with specified ID not found.' })
         }
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.put('/:id', async (req, res) => {
+    try {
+        Outfit.update(
+            {
+                where: {
+                    id: req.params.id,
+                    user_id: req.session.user_id
+                }
+            },
+            {
+                
+            }
+        )
     } catch (err) {
         res.status(500).json(err);
     }
