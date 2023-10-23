@@ -1,22 +1,22 @@
 [
     {
         "id": 1,
-        "category": "Tops"
+        "category_name": "Tops"
     },
     {
         "id": 2,
-        "category": "Bottoms"
+        "category_name": "Bottoms"
     },
     {
         "id": 3,
-        "category": "Shoes"
+        "category_name": "Shoes"
     },
     {
         "id": 4,
-        "category": "One Pieces"
+        "category_name": "One Pieces"
     },
     {
         "id": 5,
-        "category": "Accessories"
+        "category_name": "Accessories"
     }
 ]
