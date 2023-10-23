@@ -1,0 +1,231 @@
+[
+    {
+      "id": 1,
+      "brand_name": "Human Made",
+      "season": "SS20",
+      "retail_price": 88,
+      "category_id": 1,
+      "image_url": ""
+    },
+    {
+      "id": 2,
+      "brand_name": "Off-White",
+      "season": "FW23",
+      "retail_price": 170,
+      "category_id": 1,
+      "image_url": ""
+    },
+    {
+      "id": 3,
+      "brand_name": "Stussy",
+      "season": "SS21",
+      "retail_price": 60,
+      "category_id": 1,
+      "image_url": ""
+    },
+    {
+      "id": 4,
+      "brand_name": "Hello Kitty",
+      "season": "SS19",
+      "retail_price": 30,
+      "category_id": 1,
+      "image_url": ""
+    },
+    {
+      "id": 5,
+      "brand_name": "Uniqlo",
+      "season": "SS21",
+      "retail_price": 35,
+      "category_id": 1,
+      "image_url": ""
+    },
+    {
+      "id": 6,
+      "brand_name": "Sandro",
+      "season": "SS23",
+      "retail_price": 200,
+      "category_id": 1,
+      "image_url": ""
+    },
+    {
+      "id": 7,
+      "brand_name": "Chanel",
+      "season": "SS85",
+      "retail_price": 8000,
+      "category_id": 1,
+      "image_url": ""
+    },
+    {
+      "id": 8,
+      "brand_name": "Denim Tears",
+      "season": "SS21",
+      "retail_price": 295,
+      "category_id": 2,
+      "image_url": ""
+    },
+    {
+      "id": 9,
+      "brand_name": "Almas",
+      "season": "FW22",
+      "retail_price": 105,
+      "category_id": 2,
+      "image_url": ""
+    },
+    {
+      "id": 10,
+      "brand_name": "Akris",
+      "season": "FW23",
+      "retail_price": 1290,
+      "category_id": 2,
+      "image_url": ""
+    },
+    {
+      "id": 11,
+      "brand_name": "Phillim Lim",
+      "season": "FW23",
+      "retail_price": 475,
+      "category_id": 2,
+      "image_url": ""
+    },
+    {
+      "id": 12,
+      "brand_name": "Carhartt",
+      "season": "FW22",
+      "retail_price": 100,
+      "category_id": 2,
+      "image_url": ""
+    },
+    {
+      "id": 13,
+      "brand_name": "Balenciaga",
+      "season": "FW23",
+      "retail_price": 1080,
+      "category_id": 2,
+      "image_url": ""
+    },
+    {
+      "id": 14,
+      "brand_name": "Dickies",
+      "retail_price": 50,
+      "category_id": 2,
+      "image_url": ""
+    },
+    {
+      "id": 15,
+      "brand_name": "Jordan",
+      "retail_price": 180,
+      "category_id": 3,
+      "image_url": ""
+    },
+    {
+      "id": 16,
+      "brand_name": "Commes Des Garcon",
+      "retail_price": 160,
+      "category_id": 3,
+      "image_url": ""
+    },
+    {
+      "id": 17,
+      "brand_name": "Doc Martins",
+      "retail_price": 150,
+      "category_id": 3,
+      "image_url": ""
+    },
+    {
+      "id": 18,
+      "brand_name": "Golf Le Fleur",
+      "retail_price": 305,
+      "category_id": 3,
+      "image_url": ""
+    },
+    {
+      "id": 19,
+      "brand_name": "Suicoke",
+      "retail_price": 450,
+      "category_id": 3,
+      "image_url": ""
+    },
+    {
+      "id": 20,
+      "brand_name": "Miu Miu",
+      "retail_price": 1080,
+      "category_id": 3,
+      "image_url": ""
+    },
+    {
+      "id": 21,
+      "brand_name": "Prada",
+      "retail_price": 1790,
+      "category_id": 3,
+      "image_url": ""
+    },
+    {
+      "id": 22,
+      "brand_name": "Jason Wu Collection",
+      "season": "FW23",
+      "retail_price": 3895,
+      "category_id": 4,
+      "image_url": ""
+    },
+    {
+      "id": 23,
+      "brand_name": "Mac Duggal",
+      "season": "FW22",
+      "retail_price": 290,
+      "category_id": 4,
+      "image_url": ""
+    },
+    {
+      "id": 24,
+      "brand_name": "Bape",
+      "retail_price": 2095,
+      "category_id": 4,
+      "image_url": ""
+    },
+    {
+      "id": 25,
+      "brand_name": "Dickies",
+      "retail_price": 75,
+      "category_id": 4,
+      "image_url": ""
+    },
+    {
+      "id": 26,
+      "brand_name": "Versace",
+      "season": "FW23",
+      "retail_price": 372,
+      "category_id": 5,
+      "image_url": ""
+    },
+    {
+      "id": 27,
+      "brand_name": "Stella McCartney",
+      "season": "FW23",
+      "retail_price": 320,
+      "category_id": 5,
+      "image_url": ""
+    },
+    {
+      "id": 28,
+      "brand_name": "Jacquemus",
+      "season": "FW22",
+      "retail_price": 125,
+      "category_id": 5,
+      "image_url": ""
+    },
+    {
+      "id": 29,
+      "brand_name": "Casio",
+      "retail_price": 60,
+      "category_id": 5,
+      "image_url": ""
+    },
+    {
+      "id": 30,
+      "brand_name": "G-Shock",
+      "retail_price": 100,
+      "category_id": 5,
+      "image_url": ""
+    }
+  ]
+  
