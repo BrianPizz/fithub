@@ -60,7 +60,7 @@ router.get('/create', async (req, res) => {
             res.status(404).json({ message: 'Could not find products matching this category.' })
         };
 
-        const bottoms = bottomData.map((product) => product.get({ plain: true })); 
+        const bottoms = bottomData.map((product) => product.get({ plain: true }));
 
         // Shoes
         const shoeData = await Product.findAll({
@@ -72,10 +72,33 @@ router.get('/create', async (req, res) => {
             res.status(404).json({ message: 'Could not find products matching this category.' })
         };
 
-        const shoes = shoeData.map((product) => product.get({ plain: true })); 
+        const shoes = shoeData.map((product) => product.get({ plain: true }));
 
+        // Accessories
+        const accessoryData = await Product.findAll({
+            where: { category_id: 4 },
+            include: { model: Category }
+        });
 
-        res.render('create', { tops, bottoms, shoes });
+        if(!accessoryData) {
+            res.status(404).json({ message: 'Could not find products matching this category.' })
+        };
+
+        const accessories = accessoryData.map((product) => product.get({ plain: true }));
+
+        // One piece
+        const onepieceData = await Product.findAll({
+            where: { category_id: 5 },
+            include: { model: Category }
+        });
+
+        if(!onepieceData) {
+            res.status(404).json({ message: 'Could not find products matching this category.' })
+        };
+
+        const onesies = onepieceData.map((product) => product.get({ plain: true }));
+
+        res.render('create', { tops, bottoms, shoes, accessories, onesies });
 
     } catch (err) {
         res.status(500).json(err);
