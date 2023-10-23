@@ -4,3 +4,5 @@ const outfitRoutes = require('./outfitRoutes');
 
 router.use('/user', userRoutes);
 router.use('/outfit', outfitRoutes);
+
+module.exports = router;

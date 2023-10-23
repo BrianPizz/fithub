@@ -105,3 +105,5 @@ router.post('/like/:id', async (req, res) => {
 // Post comment about an outfit
 // May add later
 // router.post('/comment', async (req, res) => {});
+
+module.exports = router;
