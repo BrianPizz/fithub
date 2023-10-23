@@ -1,0 +1,27 @@
+[
+    {
+      "brand_name": "Versace",
+      "season": "FW23",
+      "retail_price": "$372"
+    },
+    {
+        "brand_name": "Stella McCartney",
+        "season": "FW23",
+        "retail_price": "$320"
+    },
+    {
+        "brand_name": "Jacquemus",
+        "season": "FW22",
+        "retail_price": "$125"
+    },
+    {
+        "brand_name": "Casio",
+        "season": "N/A",
+        "retail_price": "$60"
+    },
+    {
+        "brand_name": "G-Shock",
+        "season": "N/A",
+        "retail_price": "$100"
+    }
+  ]

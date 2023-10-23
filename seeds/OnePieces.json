@@ -1,0 +1,22 @@
+[
+    {
+      "brand_name": "Jason Wu Collection",
+      "season": "FW23",
+      "retail_price": "$3895"
+    },
+    {
+        "brand_name": "Mac Duggal",
+        "season": "FW22",
+        "retail_price": "$290"
+    },
+    {
+        "brand_name": "Bape",
+        "season": "N/A",
+        "retail_price": "$2095"
+    },
+    {
+        "brand_name": "Dickies",
+        "season": "N/A",
+        "retail_price": "$75"
+    }
+  ]
