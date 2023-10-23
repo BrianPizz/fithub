@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
     try {
         const newFit = await Outfit.create({
             outfit_name: req.body.outfit_name,
-            user_id: req.session.user_ud
+            user_id: req.session.user_id
         });
 
         if (newFit) {
