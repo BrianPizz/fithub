@@ -6,12 +6,14 @@ router.post('/', async (req, res) => {
     /* req.body example:
         {
             outfit_name: "Example",
-            user_id: 1,
             productIds: [1, 2, 3]
         }
     */
     try {
-        const newFit = await Outfit.create(req.body);
+        const newFit = await Outfit.create({
+            ...req.body,
+            user_id: req.session.user_ud
+        });
 
         if (newFit) {
             const productArr = req.body.productIds;
