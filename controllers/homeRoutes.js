@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Product, Outfit, OutfitProducts, Category, User } = require('../models');
+const { Product, Outfit, OutfitProducts, Category } = require('../models');
 // Add authCheck to routes later
 const authCheck = require('../utils/auth');
 
@@ -34,8 +34,6 @@ router.get('/create', async (req, res) => {
     try {
 
         // Finding all products for each category of clothing to display.
-        // Need to rewrite after seeds and handlebars finished (category_id and url/view).
-
         // Tops
         const topData = await Product.findAll({
             where: { category_id: 1 },
@@ -72,9 +70,21 @@ router.get('/create', async (req, res) => {
 
         const shoes = shoeData.map((product) => product.get({ plain: true }));
 
+        // One piece
+        const onepieceData = await Product.findAll({
+            where: { category_id: 4 },
+            include: { model: Category }
+        });
+
+        if (!onepieceData) {
+            res.status(404).json({ message: 'Could not find products matching this category.' })
+        };
+
+        const onesies = onepieceData.map((product) => product.get({ plain: true }));
+
         // Accessories
         const accessoryData = await Product.findAll({
-            where: { category_id: 4 },
+            where: { category_id: 5 },
             include: { model: Category }
         });
 
@@ -83,18 +93,6 @@ router.get('/create', async (req, res) => {
         };
 
         const accessories = accessoryData.map((product) => product.get({ plain: true }));
-
-        // One piece
-        const onepieceData = await Product.findAll({
-            where: { category_id: 5 },
-            include: { model: Category }
-        });
-
-        if(!onepieceData) {
-            res.status(404).json({ message: 'Could not find products matching this category.' })
-        };
-
-        const onesies = onepieceData.map((product) => product.get({ plain: true }));
 
         res.render('create', { tops, bottoms, shoes, accessories, onesies });
 

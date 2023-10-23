@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Product, Outfit, OutfitProducts, Category, User } = require('../models');
+const { Product, Outfit, OutfitProducts, Category } = require('../models');
 const authCheck = require('../utils/auth');
 
 // Displaying user data
@@ -54,9 +54,21 @@ router.get('/', async (req, res) => {
 
         const shoes = shoeData.map((product) => product.get({ plain: true }));
 
+        // One piece
+        const onepieceData = await Product.findAll({
+            where: { category_id: 4 },
+            include: { model: Category }
+        });
+
+        if (!onepieceData) {
+            res.status(404).json({ message: 'Could not find products matching this category.' })
+        };
+
+        const onesies = onepieceData.map((product) => product.get({ plain: true }));
+
         // Accessories
         const accessoryData = await Product.findAll({
-            where: { category_id: 4 },
+            where: { category_id: 5 },
             include: { model: Category }
         });
 
@@ -65,18 +77,6 @@ router.get('/', async (req, res) => {
         };
 
         const accessories = accessoryData.map((product) => product.get({ plain: true }));
-
-        // One piece
-        const onepieceData = await Product.findAll({
-            where: { category_id: 5 },
-            include: { model: Category }
-        });
-
-        if(!onepieceData) {
-            res.status(404).json({ message: 'Could not find products matching this category.' })
-        };
-
-        const onesies = onepieceData.map((product) => product.get({ plain: true }));
 
         // Render all of the above to dashboard
         res.render('dashboard', { outfits, tops, bottoms, shoes, accessories, onesies });
