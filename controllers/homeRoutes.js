@@ -5,7 +5,7 @@ const authCheck = require('../utils/auth');
 
 // Displaying landing page. Slide 4 of proposal.
 router.get('/', async (req, res) => {
-    res.render('landing');
+    res.render('landing', {layout: false});
 });
 
 // Displaying user's saved outfits
