@@ -102,12 +102,12 @@ router.get('/create', async (req, res) => {
 });
 
 // Route for top outfits page
-router.get('/topfits', async (req, res) => {
+router.get('/top', async (req, res) => {
     try {
         // Top outfit data
         const topFits = await Outfit.findAll({
             order: [['likes', 'DESC']],
-            limit: 3,
+            // limit: 3,
             include: [{ model: Product, through: OutfitProducts }]
         });
 
@@ -117,9 +117,7 @@ router.get('/topfits', async (req, res) => {
 
         const outfits = topFits.map((outfit) => outfit.get({ plain: true }));
 
-        // Get saved comments data if needed from a different table.
-
-        res.render('topfits', { outfits });
+        res.render('top', { outfits });
 
     } catch (err) {
         res.status(500).json(err);
