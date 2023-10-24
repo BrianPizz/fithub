@@ -4,6 +4,7 @@
     <div class="container-fluid col-8" id="yours">
         {{#each outfits as |outfit|}}
         <div class="card" id="your-card">
+            <h3 class="mx-auto">{{outfit_name}}</h3>
             <div class="image-wrapper">
                 <div class="container fit-container" id="your-fit">
                     {{#each outfit.products as |product|}}
