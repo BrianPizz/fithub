@@ -149,7 +149,7 @@ router.get('/fit/:id', authCheck, async (req, res) => {
 });
 
 // Route for editing selected outfit
-router.get('/edit', async (req, res) => {
+router.get('/edit', authCheck, async (req, res) => {
     try {
         // Finding all products for each category of clothing to display.
         // Tops

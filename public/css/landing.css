@@ -83,3 +83,6 @@ button{
     background-color: black;
     font-family: "Bodoni Moda";
 }
+#sign-up-form {
+    width: 50vh;
+}
