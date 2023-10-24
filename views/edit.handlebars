@@ -18,134 +18,136 @@
         </div>
     </div>
     <div class="section-wrapper col-2"></div>
+    <button type="button" class="btn btn-light" id="editFitBtn">Edit</button>
 </div>
 
 <!-- _______________________________________________ Edit Outfit _____________________________________________________ -->
 
-{{#if showEditFit}}
-<div>
-    <pre><h2 id="section-title"> E D I T   Y O U R   F I T </h2></pre>
-</div>
-<div>
-    <!-- _______________________________________________ Offers Prodcut Slider _____________________________________________________ -->
+<div id="editFitSection" style="display: none;">
+    <div>
+        <pre><h2 id="section-title"> E D I T   Y O U R   F I T </h2></pre>
+    </div>
+    <div>
+        <!-- _______________________________________________ Offers Product Slider _____________________________________________________ -->
 
-    <div class="container my-2 py-4">
-        <div class="row justify-content-center">
-            <div class="col-lg-7 col-md-8">
-                <div class="text-center">
-                    <h3 class="section-title">T O P S</h3>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="slider">
-            {{#each tops as |top|}}
-            <div class="mx-3">
-                <div class="card border-0 rounded-0"
-                    style="background-image:url({{top.image_url}});background-size: cover;" id="slider-card" data-id="{{top.id}}">
-                    <div class="d-flex bg-opacity-25 justify-content-center align-items-end" style="height: 260px">
+        <div class="container my-2 py-4">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 col-md-8">
+                    <div class="text-center">
+                        <h3 class="section-title">T O P S</h3>
                     </div>
                 </div>
             </div>
-            {{/each}}
-        </div>
-    </div>
-    <div class="container my-2 py-4">
-        <div class="row justify-content-center">
-            <div class="col-lg-7 col-md-8">
-                <div class="text-center">
-                    <h3 class="section-title">B O T T O M S</h3>
+            <br>
+            <div class="slider">
+                {{#each tops as |top|}}
+                <div class="mx-3">
+                    <div class="card border-0 rounded-0"
+                        style="background-image:url({{top.image_url}});background-size: cover;" id="slider-card" data-id="{{top.id}}">
+                        <div class="d-flex bg-opacity-25 justify-content-center align-items-end" style="height: 260px">
+                        </div>
+                    </div>
                 </div>
+                {{/each}}
             </div>
         </div>
-        <br>
-        <div class="slider">
-            {{#each bottoms as |bottom|}}
-            <div class="mx-3">
-                <div class="card border-0 rounded-0"
-                    style="background-image:url({{bottom.image_url}});background-size: cover;" id="slider-card" data-id="{{bottom.id}}">
-                    <div class="d-flex bg-opacity-25 justify-content-center align-items-end" style="height: 260px">
+        <div class="container my-2 py-4">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 col-md-8">
+                    <div class="text-center">
+                        <h3 class="section-title">B O T T O M S</h3>
                     </div>
                 </div>
             </div>
-            {{/each}}
-        </div>
-    </div>
-    <div class="container my-2 py-4">
-        <div class="row justify-content-center">
-            <div class="col-lg-7 col-md-8">
-                <div class="text-center">
-                    <h3 class="section-title">S H O E S</h3>
+            <br>
+            <div class="slider">
+                {{#each bottoms as |bottom|}}
+                <div class="mx-3">
+                    <div class="card border-0 rounded-0"
+                        style="background-image:url({{bottom.image_url}});background-size: cover;" id="slider-card" data-id="{{bottom.id}}">
+                        <div class="d-flex bg-opacity-25 justify-content-center align-items-end" style="height: 260px">
+                        </div>
+                    </div>
                 </div>
+                {{/each}}
             </div>
         </div>
-        <br>
-        <div class="slider">
-            {{#each shoes as |shoe|}}
-            <div class="mx-3">
-                <div class="card border-0 rounded-0"
-                    style="background-image:url({{shoe.image_url}});background-size: cover;" id="slider-card" data-id="{{shoe.id}}">
-                    <div class="d-flex bg-opacity-25 justify-content-center align-items-end" style="height: 260px">
+        <div class="container my-2 py-4">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 col-md-8">
+                    <div class="text-center">
+                        <h3 class="section-title">S H O E S</h3>
                     </div>
                 </div>
             </div>
-            {{/each}}
-        </div>
-    </div>
-    <div class="container my-2 py-4">
-        <div class="row justify-content-center">
-            <div class="col-lg-7 col-md-8">
-                <div class="text-center">
-                    <h3 class="section-title">O N E P I E C E S</h3>
+            <br>
+            <div class="slider">
+                {{#each shoes as |shoe|}}
+                <div class="mx-3">
+                    <div class="card border-0 rounded-0"
+                        style="background-image:url({{shoe.image_url}});background-size: cover;" id="slider-card" data-id="{{shoe.id}}">
+                        <div class="d-flex bg-opacity-25 justify-content-center align-items-end" style="height: 260px">
+                        </div>
+                    </div>
                 </div>
+                {{/each}}
             </div>
         </div>
-        <br>
-        <div class="slider">
-            {{#each onesies as |onepiece|}}
-            <div class="mx-3">
-                <div class="card border-0 rounded-0"
-                    style="background-image:url({{onepiece.image_url}});background-size: cover;" id="slider-card" data-id="{{onepiece.id}}">
-                    <div class="d-flex bg-opacity-25 justify-content-center align-items-end" style="height: 260px">
+        <div class="container my-2 py-4">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 col-md-8">
+                    <div class="text-center">
+                        <h3 class="section-title">O N E P I E C E S</h3>
                     </div>
                 </div>
             </div>
-            {{/each}}
-        </div>
-    </div>
-    <div class="container my-2 py-4">
-        <div class="row justify-content-center">
-            <div class="col-lg-7 col-md-8">
-                <div class="text-center">
-                    <h3 class="section-title">A C C E S S O R I E S</h3>
+            <br>
+            <div class="slider">
+                {{#each onesies as |onepiece|}}
+                <div class="mx-3">
+                    <div class="card border-0 rounded-0"
+                        style="background-image:url({{onepiece.image_url}});background-size: cover;" id="slider-card" data-id="{{onepiece.id}}">
+                        <div class="d-flex bg-opacity-25 justify-content-center align-items-end" style="height: 260px">
+                        </div>
+                    </div>
                 </div>
+                {{/each}}
             </div>
         </div>
-        <br>
-        <div class="slider">
-            {{#each accessories as |accessory|}}
-            <div class="mx-3">
-                <div class="card border-0 rounded-0"
-                    style="background-image:url({{accessory.image_url}});background-size: cover;" id="slider-card" data-id="{{accessory.id}}">
-                    <div class="d-flex bg-opacity-25 justify-content-center align-items-end" style="height: 260px">
+        <div class="container my-2 py-4">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 col-md-8">
+                    <div class="text-center">
+                        <h3 class="section-title">A C C E S S O R I E S</h3>
                     </div>
                 </div>
             </div>
-            {{/each}}
+            <br>
+            <div class="slider">
+                {{#each accessories as |accessory|}}
+                <div class="mx-3">
+                    <div class="card border-0 rounded-0"
+                        style="background-image:url({{accessory.image_url}});background-size: cover;" id="slider-card" data-id="{{accessory.id}}">
+                        <div class="d-flex bg-opacity-25 justify-content-center align-items-end" style="height: 260px">
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
         </div>
     </div>
-</div>
-<!-- ___________ Outfit Name Input ______________ -->
-<div class="input-group input-group-lg">
-  <span class="input-group-text" id="inputGroup-sizing-lg"> F I T  N A M E </span>
-  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
-</div>
-<!-- ___________ Slick Slider ______________ -->
-<div class="text-center container-fluid">
-    <div class="section-wrapper">
-        <a href="fit.html"><button type="button" id="generate">
-                <h3>S A V E</h3>
-            </button></a>
+    <!-- ___________ Outfit Name Input ______________ -->
+    <div class="input-group input-group-lg">
+    <span class="input-group-text" id="inputGroup-sizing-lg"> F I T  N A M E </span>
+    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+    </div>
+    <!-- ___________ Slick Slider ______________ -->
+    <div class="text-center container-fluid">
+        <div class="section-wrapper">
+            <a href="fit.html"><button type="button" id="generate">
+                    <h3>S A V E</h3>
+                </button></a>
+        </div>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -171,4 +173,3 @@
     });
 
 </script>
-{{/if}}

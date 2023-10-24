@@ -43,6 +43,16 @@ const deleteOufitHandler = async (event) => {
     }
 };
 
+// Edit an outfit
+const toggleEditFit = async () => {
+    const editFitSection = document.getElementById('editFitSecton');
+    if (editFitSection.style.display === 'none') {
+        editFitSection.style.display === 'block'
+    };
+};
+
+
 // Event listeners
 document.querySelector('').addEventListener('click', updateOutfitHandler); // Need to add update button class
 document.querySelector('').addEventListener('click', deleteOufitHandler); // Need to add delete button class
+document.querySelector('#editFitBtn').addEventListener('click', toggleEditFit);
