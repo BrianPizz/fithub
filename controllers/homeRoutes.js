@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Product, Outfit, OutfitProducts, Category } = require('../models');
+const { Product, Outfit, OutfitProducts, Category, User } = require('../models');
 // Add authCheck to routes later
 const authCheck = require('../utils/auth');
 
@@ -108,7 +108,8 @@ router.get('/top', authCheck, async (req, res) => {
         const topFits = await Outfit.findAll({
             order: [['likes', 'DESC']],
             // limit: 3,
-            include: [{ model: Product, through: OutfitProducts }]
+            include: [{ model: Product, through: OutfitProducts },
+            { model: User}]
         });
 
         if (!topFits) {
@@ -117,7 +118,8 @@ router.get('/top', authCheck, async (req, res) => {
 
         const outfits = topFits.map((outfit) => outfit.get({ plain: true }));
 
-        res.render('top', { outfits });
+        res.render('top', { outfits,
+            logged_in: req.session.logged_in });
 
     } catch (err) {
         res.status(500).json(err);
