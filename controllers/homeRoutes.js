@@ -122,7 +122,31 @@ router.get('/top', async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
-})
+});
+
+// Route for view/edit selected outfit
+router.get('/fit/:id', async (req, res) => {
+    try {
+        // Top outfit data
+        const selectedFit = await Outfit.findByPk({
+            where: {
+                id: req.params.id
+            },
+            include: [{ model: Product, through: OutfitProducts }]
+        });
+
+        if (!selectedFit) {
+            res.status(404).json({ message: 'Error finding top outfits data.' })
+        }
+
+        const fit = selectedFit.map((outfit) => outfit.get({ plain: true }));
+
+        res.render('fit', { fit });
+
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 
 // Displaying login page
 router.get('/login', (req, res) => {
