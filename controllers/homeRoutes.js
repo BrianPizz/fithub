@@ -212,7 +212,7 @@ router.get('/edit', async (req, res) => {
 
         const accessories = accessoryData.map((product) => product.get({ plain: true }));
 
-        res.render('create', { tops, bottoms, shoes, accessories, onesies });
+        res.render('edit', { tops, bottoms, shoes, accessories, onesies });
 
     } catch (err) {
         res.status(500).json(err);
