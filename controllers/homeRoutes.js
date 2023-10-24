@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
 });
 
 // Displaying user's saved outfits
-router.get('/yours', async (req, res) => {
+router.get('/yours', authCheck, async (req, res) => {
     try {
         const userData = await Outfit.findAll({
             where: { user_id: req.session.user_id },
@@ -30,7 +30,7 @@ router.get('/yours', async (req, res) => {
 });
 
 // Route to page where user can create a new outfit.
-router.get('/create', async (req, res) => {
+router.get('/create', authCheck, async (req, res) => {
     try {
 
         // Finding all products for each category of clothing to display.
@@ -102,7 +102,7 @@ router.get('/create', async (req, res) => {
 });
 
 // Route for top outfits page
-router.get('/top', async (req, res) => {
+router.get('/top', authCheck, async (req, res) => {
     try {
         // Top outfit data
         const topFits = await Outfit.findAll({
@@ -125,7 +125,7 @@ router.get('/top', async (req, res) => {
 });
 
 // Route for view/edit selected outfit
-router.get('/fit/:id', async (req, res) => {
+router.get('/fit/:id', authCheck, async (req, res) => {
     try {
         // Top outfit data
         const selectedFit = await Outfit.findByPk({
