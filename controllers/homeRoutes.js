@@ -32,7 +32,6 @@ router.get('/yours', async (req, res) => {
 // Route to page where user can create a new outfit.
 router.get('/create', async (req, res) => {
     try {
-
         // Finding all products for each category of clothing to display.
         // Tops
         const topData = await Product.findAll({
@@ -124,10 +123,9 @@ router.get('/top', async (req, res) => {
     }
 });
 
-// Route for view/edit selected outfit
+// Route for viewing selected outfit
 router.get('/fit/:id', async (req, res) => {
     try {
-        // Top outfit data
         const selectedFit = await Outfit.findByPk({
             where: {
                 id: req.params.id
@@ -136,12 +134,83 @@ router.get('/fit/:id', async (req, res) => {
         });
 
         if (!selectedFit) {
-            res.status(404).json({ message: 'Error finding top outfits data.' })
+            res.status(404).json({ message: 'Error finding outfit data.' })
         }
 
         const fit = selectedFit.map((outfit) => outfit.get({ plain: true }));
 
         res.render('fit', { fit });
+
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+// Route for editing selected outfit
+router.get('/edit/:id', async (req, res) => {
+    try {
+        // Finding all products for each category of clothing to display.
+        // Tops
+        const topData = await Product.findAll({
+            where: { category_id: 1 },
+            include: { model: Category }
+        });
+
+        if(!topData) {
+            res.status(404).json({ message: 'Could not find products matching this category.' })
+        };
+
+        const tops = topData.map((product) => product.get({ plain: true }));
+        
+        // Bottoms
+        const bottomData = await Product.findAll({
+            where: { category_id: 2 },
+            include: { model: Category }
+        });
+
+        if(!bottomData) {
+            res.status(404).json({ message: 'Could not find products matching this category.' })
+        };
+
+        const bottoms = bottomData.map((product) => product.get({ plain: true }));
+
+        // Shoes
+        const shoeData = await Product.findAll({
+            where: { category_id: 3 },
+            include: { model: Category }
+        });
+
+        if(!shoeData) {
+            res.status(404).json({ message: 'Could not find products matching this category.' })
+        };
+
+        const shoes = shoeData.map((product) => product.get({ plain: true }));
+
+        // One piece
+        const onepieceData = await Product.findAll({
+            where: { category_id: 4 },
+            include: { model: Category }
+        });
+
+        if (!onepieceData) {
+            res.status(404).json({ message: 'Could not find products matching this category.' })
+        };
+
+        const onesies = onepieceData.map((product) => product.get({ plain: true }));
+
+        // Accessories
+        const accessoryData = await Product.findAll({
+            where: { category_id: 5 },
+            include: { model: Category }
+        });
+
+        if(!accessoryData) {
+            res.status(404).json({ message: 'Could not find products matching this category.' })
+        };
+
+        const accessories = accessoryData.map((product) => product.get({ plain: true }));
+
+        res.render('create', { tops, bottoms, shoes, accessories, onesies });
 
     } catch (err) {
         res.status(500).json(err);
