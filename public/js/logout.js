@@ -12,4 +12,6 @@ const logoutHandler = async () => {
     }
   };
 
+// Event listener
 document.querySelector("").addEventListener("click", logoutHandler); // Need to add id of logout button
+// Logout button only to be visible when logged in
