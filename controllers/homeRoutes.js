@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Product, Outfit, OutfitProducts, Category } = require('../models');
+const { Product, Outfit, OutfitProducts, Category, User } = require('../models');
 // Add authCheck to routes later
 const authCheck = require('../utils/auth');
 
@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
 });
 
 // Displaying user's saved outfits
-router.get('/yours', async (req, res) => {
+router.get('/yours', authCheck, async (req, res) => {
     try {
         const userData = await Outfit.findAll({
             where: { user_id: req.session.user_id },
@@ -30,7 +30,7 @@ router.get('/yours', async (req, res) => {
 });
 
 // Route to page where user can create a new outfit.
-router.get('/create', async (req, res) => {
+router.get('/create', authCheck, async (req, res) => {
     try {
 
         // Finding all products for each category of clothing to display.
@@ -102,13 +102,14 @@ router.get('/create', async (req, res) => {
 });
 
 // Route for top outfits page
-router.get('/top', async (req, res) => {
+router.get('/top', authCheck, async (req, res) => {
     try {
         // Top outfit data
         const topFits = await Outfit.findAll({
             order: [['likes', 'DESC']],
             // limit: 3,
-            include: [{ model: Product, through: OutfitProducts }]
+            include: [{ model: Product, through: OutfitProducts },
+            { model: User}]
         });
 
         if (!topFits) {
@@ -117,7 +118,8 @@ router.get('/top', async (req, res) => {
 
         const outfits = topFits.map((outfit) => outfit.get({ plain: true }));
 
-        res.render('top', { outfits });
+        res.render('top', { outfits,
+            logged_in: req.session.logged_in });
 
     } catch (err) {
         res.status(500).json(err);
@@ -125,7 +127,7 @@ router.get('/top', async (req, res) => {
 });
 
 // Route for view/edit selected outfit
-router.get('/fit/:id', async (req, res) => {
+router.get('/fit/:id', authCheck, async (req, res) => {
     try {
         // Top outfit data
         const selectedFit = await Outfit.findByPk({
@@ -151,7 +153,7 @@ router.get('/fit/:id', async (req, res) => {
 // Displaying login page
 router.get('/login', (req, res) => {
     if (req.session.logged_in) {
-        res.redirect('/homepage');
+        res.redirect('/top');
         return;
     }
 
