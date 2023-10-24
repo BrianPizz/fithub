@@ -51,8 +51,7 @@ const toggleEditFit = async () => {
     };
 };
 
-
 // Event listeners
-document.querySelector('').addEventListener('click', updateOutfitHandler); // Need to add update button class
-document.querySelector('').addEventListener('click', deleteOufitHandler); // Need to add delete button class
-document.querySelector('#editFitBtn').addEventListener('click', toggleEditFit);
+document.querySelector('.updateBtn').addEventListener('click', updateOutfitHandler); // Need to add update button class
+document.querySelector('.deleteBtn').addEventListener('click', deleteOufitHandler); // Need to add delete button class
+document.querySelector('.showEditBtn').addEventListener('click', toggleEditFit);

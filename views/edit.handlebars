@@ -18,9 +18,9 @@
         </div>
     </div>
     <div class="section-wrapper col-2"></div>
-    <button type="button" class="btn btn-light" id="editFitBtn">Edit</button>
+    <button type="button" class="btn btn-light btn-lg showEditBtn">Edit</button>
+    <button type="button" class="btn btn-light btn-lg deleteBtn" data-id="{{fit.id}}">Delete</button>
 </div>
-
 <!-- _______________________________________________ Edit Outfit _____________________________________________________ -->
 
 <div id="editFitSection" style="display: none;">
@@ -144,7 +144,7 @@
     <!-- ___________ Slick Slider ______________ -->
     <div class="text-center container-fluid">
         <div class="section-wrapper">
-            <a href="fit.html"><button type="button" id="generate">
+            <a href="fit.html"><button type="button" class="updateBtn" data-id="{{fit.id}}">
                     <h3>S A V E</h3>
                 </button></a>
         </div>

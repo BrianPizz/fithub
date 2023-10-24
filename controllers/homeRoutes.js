@@ -149,8 +149,22 @@ router.get('/fit/:id', authCheck, async (req, res) => {
 });
 
 // Route for editing selected outfit
-router.get('/edit', authCheck, async (req, res) => {
+router.get('/edit/:id', authCheck, async (req, res) => {
     try {
+        // Find user selected outfit
+        const selectedFit = await Outfit.findByPk({
+            where: {
+                id: req.params.id
+            },
+            include: [{ model: Product, through: OutfitProducts }]
+        });
+
+        if (!selectedFit) {
+            res.status(404).json({ message: 'Error finding outfit data.' })
+        }
+
+        const fit = selectedFit.map((outfit) => outfit.get({ plain: true }));
+
         // Finding all products for each category of clothing to display.
         // Tops
         const topData = await Product.findAll({
@@ -212,7 +226,7 @@ router.get('/edit', authCheck, async (req, res) => {
 
         const accessories = accessoryData.map((product) => product.get({ plain: true }));
 
-        res.render('edit', { tops, bottoms, shoes, accessories, onesies });
+        res.render('edit', { fit, tops, bottoms, shoes, accessories, onesies });
 
     } catch (err) {
         res.status(500).json(err);
