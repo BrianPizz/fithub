@@ -18,8 +18,12 @@
         </div>
     </div>
     <div class="section-wrapper col-2"></div>
-    <button type="button" class="btn btn-light btn-lg showEditBtn">Edit</button>
-    <button type="button" class="btn btn-light btn-lg deleteBtn" data-id="{{fit.id}}">Delete</button>
+    <button type="button" class="showEditBtn">
+        <h3>E D I T</h3>
+    </button>
+    <button type="button" class="deleteBtn" data-id="{{fit.id}}">
+        <h4>D E L E T E</h4>
+    </button>
 </div>
 <!-- _______________________________________________ Edit Outfit _____________________________________________________ -->
 
@@ -137,15 +141,15 @@
         </div>
     </div>
     <!-- ___________ Outfit Name Input ______________ -->
-    <div class="input-group input-group-lg">
-    <span class="input-group-text" id="inputGroup-sizing-lg"> F I T  N A M E </span>
-    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+    <div>
+        <label> F I T  N A M E </label><br>
+        <input type="text" id="fitNameInput" placeholder="Enter Here">
     </div>
     <!-- ___________ Slick Slider ______________ -->
     <div class="text-center container-fluid">
         <div class="section-wrapper">
             <a href="fit.html"><button type="button" class="updateBtn" data-id="{{fit.id}}">
-                    <h3>S A V E</h3>
+                    <h5>S A V E</h5>
                 </button></a>
         </div>
     </div>

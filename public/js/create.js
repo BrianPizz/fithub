@@ -1,11 +1,12 @@
 // Create new outfit
-const creatOutfitHandler = async (event) => {
-    event.preventDefault();
+const createOutfitHandler = async (event) => {
+    // Changed to click event listener
+    // event.preventDefault();
     // Grab values of name and products
-    const outfitName = document.querySelector('').value.trim(); // Need to add id of input field
+    const outfitName = document.querySelector('#fitNameInput').value.trim(); // Need to add id of input field
     const productIds = []; // Need to add functionaltiy to add product ids to array
 
-    // vVrify there is a name and products
+    // Verify there is a name and products
     if (outfitName && productIds.length > 0) {
         // Create post request to /api/outfit
         const response = await fetch('/api/outfit', {
@@ -23,4 +24,4 @@ const creatOutfitHandler = async (event) => {
 };
 
 // Event listener
-document.querySelector('').addEventListener('submit', creatOutfitHandler); // Need to add id of form 
+document.querySelector('.saveBtn').addEventListener('click', createOutfitHandler); // Need to add id of form 
