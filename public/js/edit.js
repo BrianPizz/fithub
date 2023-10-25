@@ -1,5 +1,5 @@
 // Update an outfit
-const createOutfitHandler = async (event) => {
+const updateOutfitHandler = async (event) => {
     event.preventDefault();
     // Grab values of name and products
     const outfit_name = document.querySelector('#fitName').value.trim();
@@ -61,6 +61,6 @@ const toggleEditFit = async () => {
 };
 
 // Event listeners
-document.querySelector('#generate').addEventListener('click', createOutfitHandler); // Need to add id of form
+document.querySelector('#generate').addEventListener('click', updateOutfitHandler); // Need to add id of form
 document.getElementById('deleteBtn').addEventListener('click', deleteOufitHandler); // Need to add delete button class
 document.getElementById('showEditBtn').addEventListener('click', toggleEditFit);
