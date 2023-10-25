@@ -21,3 +21,4 @@ const topFitsHandler = async (event) => {
 };
 
 document.querySelectorAll('.yours-card').addEventListener('click', userFitsHandler);
+document.querySelectorAll('.top-fits-card').addEventListener('click', userFitsHandler);

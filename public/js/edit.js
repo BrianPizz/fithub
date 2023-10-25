@@ -4,7 +4,7 @@ const updateOutfitHandler = async (event) => {
     // Grab values of name and products
     const outfitName = document.querySelector('#fitNameInput').value.trim(); // Need to add id of input field
     const productIds = []; // Need to add functionaltiy to add product ids to array
-    //Sstore outfit id in data id attribute
+    //Store outfit id in data id attribute
     const id = document.querySelector('.updateBtn').getAttribute('data-id'); // add edit button class
 
     // Verify name, products, and id
