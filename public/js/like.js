@@ -17,6 +17,8 @@ const likeOufitHandler = async (event) => {
     }
 };
 
+console.log(dattebayo);
+
 // Event listener
 const likeButton = document.querySelectorAll('.like-button');
 // event delegation for likes button

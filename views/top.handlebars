@@ -16,16 +16,12 @@
                         {{/each}}
                     </div>
                 </div>
-                <div class="row">
-                    <button class="col-6 like-button" data-id="{{outfit.id}}"><i class="fa-regular fa-thumbs-up"><p>{{outfit.likes}}</p></i></button>
-                    
-                </div>
-                <div class="row">
-                    <button class="col-6 like-button" data-id="{{outfit.id}}"><i class="fa-regular fa-thumbs-up"><p>{{outfit.likes}}</p></i></button>
-                    
-                </div>
+                
             </div>
         </a>
+        <div class="row">
+            <button class="like-button" data-id="{{outfit.id}}"><i class="fa-regular fa-thumbs-up"><p>{{outfit.likes}}</p></i></button>
+        </div>
         {{/each}}
     </div>
 </div>

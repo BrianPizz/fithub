@@ -278,3 +278,7 @@ margin-top: -40px;
   .carousel-control-prev:hover, .carousel-control-next:hover {
     background-color: #FF4500; 
   }
+
+#like-button {
+    display: block;
+}
