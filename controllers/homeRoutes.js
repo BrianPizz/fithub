@@ -26,6 +26,7 @@ router.get('/yours', authCheck, async (req, res) => {
         const outfits = userData.map((outfit) => outfit.get({ plain: true }));
 
         res.render('yours', { outfits });
+        // res.json(outfits);
 
     } catch (err) {
         res.status(500).json(err);
@@ -133,10 +134,8 @@ router.get('/top', authCheck, async (req, res) => {
 // Route for view/edit selected outfit
 router.get('/fit/:id', authCheck, async (req, res) => {
     try {
-        const selectedFit = await Outfit.findByPk({
-            where: {
-                id: req.params.id
-            },
+        const id = req.params.id;
+        const selectedFit = await Outfit.findByPk(id, {
             include: [{ model: Product, through: OutfitProducts }]
         });
 
@@ -144,9 +143,9 @@ router.get('/fit/:id', authCheck, async (req, res) => {
             res.status(404).json({ message: 'Error finding outfit data.' })
         }
 
-        const fit = selectedFit.map((outfit) => outfit.get({ plain: true }));
-
+        const fit = selectedFit.get({ plain: true });
         res.render('fit', { fit });
+        // res.json(selectedFit);
 
     } catch (err) {
         res.status(500).json(err);
@@ -157,18 +156,16 @@ router.get('/fit/:id', authCheck, async (req, res) => {
 router.get('/edit/:id', authCheck, async (req, res) => {
     try {
         // Find user selected outfit
-        const selectedFit = await Outfit.findByPk({
-            where: {
-                id: req.params.id
-            },
+        const selectedFit = await Outfit.findByPk(req.params.id, {
             include: [{ model: Product, through: OutfitProducts }]
         });
 
         if (!selectedFit) {
             res.status(404).json({ message: 'Error finding outfit data.' })
-        }
+        };
 
-        const fit = selectedFit.map((outfit) => outfit.get({ plain: true }));
+        const fit = selectedFit.get({ plain: true });
+        // res.json(fit);
 
         // Finding all products for each category of clothing to display.
         // Tops

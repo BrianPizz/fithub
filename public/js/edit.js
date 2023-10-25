@@ -27,6 +27,7 @@ const updateOutfitHandler = async (event) => {
 // Delete an outfit
 const deleteOufitHandler = async (event) => {
     event.preventDefault();
+    console.log('clicked');
     // Outfit id will be stored in data id
     if (event.target.hasAttribute('data-id')) {
         const id = event.target.getAttribute('data-id');
@@ -45,6 +46,7 @@ const deleteOufitHandler = async (event) => {
 
 // Edit an outfit
 const toggleEditFit = async () => {
+    console.log('clicked');
     const editFitSection = document.getElementById('editFitSecton');
     if (editFitSection.style.display === 'none') {
         editFitSection.style.display === 'block'

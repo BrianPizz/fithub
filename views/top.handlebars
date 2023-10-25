@@ -1,21 +1,23 @@
 <div>
-    <h2 id="section-title">T O P  F I T S</h2>
+    <h2 id="section-title">T O P F I T S</h2>
     <div class="section-wrapper col-2"></div>
-    <div class="container-fluid col-8" id="yours">
+    <div class="container-fluid col-8" id="top-fits-card">
         {{#each outfits as |outfit|}}
-        <div class="top-fits-card" id="your-card" data-id="{{outfit.id}}">
-            <h3 class="mx-auto">{{outfit.outfit_name}}</h3>
-            <p class="mx-auto">by @{{user.name}}</p>
-            <div class="image-wrapper">
-                <div class="container fit-container" id="your-fit">
-                    {{#each outfit.products as |product|}}
-                    <div class="card" id="category-id-{{product.category_id}}">
-                        <img src="{{product.image_url}}" class="card-img object-fit-fill" alt="top-card-img">
+        <a href="/fit/{{outfit.id}}">
+            <div data-id="{{outfit.id}}">
+                <h3 class="mx-auto">{{outfit.outfit_name}}</h3>
+                <p class="mx-auto">by @{{user.name}}</p>
+                <div class="image-wrapper">
+                    <div class="container fit-container" id="your-fit">
+                        {{#each outfit.products as |product|}}
+                        <div class="card" id="category-id-{{product.category_id}}">
+                            <img src="{{product.image_url}}" class="card-img object-fit-fill" alt="top-card-img">
+                        </div>
+                        {{/each}}
                     </div>
-                    {{/each}}
                 </div>
             </div>
-        </div>
+        </a>
         {{/each}}
     </div>
 </div>
