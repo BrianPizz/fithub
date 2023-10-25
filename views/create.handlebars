@@ -2,7 +2,7 @@
     <pre><h2 id="section-title"> C R E A T E   Y O U R   F I T </h2></pre>
 </div>
 <div>
-    <!-- _______________________________________________ Offers Prodcut Slider _____________________________________________________ -->
+    <!-- _______________________________________________ Offers Product Slider _____________________________________________________ -->
 
     <div class="container my-2 py-4">
         <div class="row justify-content-center">
@@ -15,16 +15,22 @@
         <br>
         <div class="slider">
             {{#each tops as |top|}}
-            <div class="mx-3">
-                <div class="card border-0 rounded-0"
-                    style="background-image:url({{top.image_url}});background-size: cover;" id="slider-card" data-id="{{top.id}}">
-                    <div class="d-flex bg-opacity-25 justify-content-center align-items-end" style="height: 260px">
-                    </div>
+            <div class="piece-card text-center" data-id="{{top.id}}">
+                <h3>{{top.brand_name}}</h3>
+                {{#if top.season}}
+                <p>{{top.season}}</p>
+                {{/if}}
+                <p>${{top.retail_price}}</p>
+                  <figure class="figure">
+                    <img
+                      src="{{top.image_url}}"
+                      style="object-fit: cover; width: 50%;">
+                  </figure>
                 </div>
-            </div>
             {{/each}}
         </div>
     </div>
+
     <div class="container my-2 py-4">
         <div class="row justify-content-center">
             <div class="col-lg-7 col-md-8">
@@ -36,16 +42,22 @@
         <br>
         <div class="slider">
             {{#each bottoms as |bottom|}}
-            <div class="mx-3">
-                <div class="card border-0 rounded-0"
-                    style="background-image:url({{bottom.image_url}});background-size: cover;" id="slider-card" data-id="{{bottom.id}}">
-                    <div class="d-flex bg-opacity-25 justify-content-center align-items-end" style="height: 260px">
-                    </div>
+            <div class="piece-card text-center" data-id="{{bottom.id}}">
+                <h3>{{bottom.brand_name}}</h3>
+                {{#if bottom.season}}
+                <p>{{bottom.season}}</p>
+                {{/if}}
+                <p>${{bottom.retail_price}}</p>
+                  <figure class="figure">
+                    <img
+                      src="{{bottom.image_url}}"
+                      style="object-fit: cover; width: 50%;">
+                  </figure>
                 </div>
-            </div>
             {{/each}}
         </div>
     </div>
+
     <div class="container my-2 py-4">
         <div class="row justify-content-center">
             <div class="col-lg-7 col-md-8">
@@ -57,16 +69,19 @@
         <br>
         <div class="slider">
             {{#each shoes as |shoe|}}
-            <div class="mx-3">
-                <div class="card border-0 rounded-0"
-                    style="background-image:url({{shoe.image_url}});background-size: cover;" id="slider-card" data-id="{{shoe.id}}">
-                    <div class="d-flex bg-opacity-25 justify-content-center align-items-end" style="height: 260px">
-                    </div>
+            <div class="piece-card text-center" data-id="{{shoe.id}}">
+                <h3>{{shoe.brand_name}}</h3>
+                <p>${{shoe.retail_price}}</p>
+                  <figure class="figure">
+                    <img
+                      src="{{shoe.image_url}}"
+                      style="object-fit: cover; width: 50%;">
+                  </figure>
                 </div>
-            </div>
             {{/each}}
         </div>
     </div>
+
     <div class="container my-2 py-4">
         <div class="row justify-content-center">
             <div class="col-lg-7 col-md-8">
@@ -77,17 +92,23 @@
         </div>
         <br>
         <div class="slider">
-            {{#each onesies as |onepiece|}}
-            <div class="mx-3">
-                <div class="card border-0 rounded-0"
-                    style="background-image:url({{onepiece.image_url}});background-size: cover;" id="slider-card" data-id="{{onepiece.id}}">
-                    <div class="d-flex bg-opacity-25 justify-content-center align-items-end" style="height: 260px">
-                    </div>
+            {{#each onesies as |onesie|}}
+            <div class="piece-card text-center" data-id="{{onesie.id}}">
+                <h3>{{onesie.brand_name}}</h3>
+                {{#if onesie.season}}
+                <p>{{onesie.season}}</p>
+                {{/if}}
+                <p>${{onesie.retail_price}}</p>
+                  <figure class="figure">
+                    <img
+                      src="{{onesie.image_url}}"
+                      style="object-fit: cover; width: 50%;">
+                  </figure>
                 </div>
-            </div>
             {{/each}}
         </div>
     </div>
+
     <div class="container my-2 py-4">
         <div class="row justify-content-center">
             <div class="col-lg-7 col-md-8">
@@ -98,14 +119,19 @@
         </div>
         <br>
         <div class="slider">
-            {{#each accessories as |accessory|}}
-            <div class="mx-3">
-                <div class="card border-0 rounded-0"
-                    style="background-image:url({{accessory.image_url}});background-size: cover;" id="slider-card" data-id="{{accessory.id}}">
-                    <div class="d-flex bg-opacity-25 justify-content-center align-items-end" style="height: 260px">
-                    </div>
+            {{#each accessories as |acc|}}
+            <div class="piece-card text-center" data-id="{{acc.id}}">
+                <h3>{{acc.brand_name}}</h3>
+                {{#if acc.season}}
+                <p>{{acc.season}}</p>
+                {{/if}}
+                <p>${{acc.retail_price}}</p>
+                  <figure class="figure">
+                    <img
+                      src="{{acc.image_url}}"
+                      style="object-fit: cover; width: 50%;">
+                  </figure>
                 </div>
-            </div>
             {{/each}}
         </div>
     </div>
@@ -124,25 +150,4 @@
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
-<script>
-
-    $('.slider').slick({
-        centerMode: true,
-        dots: true,
-        autoplay: false,
-        centerPadding: '60px',
-        slidesToShow: 3,
-        responsive: [{
-            breakpoint: 768,
-            settings: {
-                arrows: false,
-                centerMode: true,
-                centerPadding: '40px',
-                Infinity: true,
-                slidesToShow: 1
-            },
-        }]
-    });
-
 </script>
