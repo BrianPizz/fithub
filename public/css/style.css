@@ -253,3 +253,29 @@ h3, h2{
     z-index: 2;
     margin-top: -15vh;
 }
+.piece-card img {
+margin-top: -40px;
+
+}
+.piece-card{
+    border: 2px solid black;
+    width: 50%;
+    margin-left: 25%;
+}
+/* Carousel buttons */
+  .carousel-control-prev {
+    background-color: #FF5733;
+  }
+
+  .carousel-control-next {
+    background-color: #33FF57; 
+  }
+
+
+  .carousel-control-prev-icon, .carousel-control-next-icon {
+    color: #fff; 
+  }
+
+  .carousel-control-prev:hover, .carousel-control-next:hover {
+    background-color: #FF4500; 
+  }
