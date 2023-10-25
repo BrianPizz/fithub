@@ -2,10 +2,9 @@
 const createOutfitHandler = async (event) => {
     event.preventDefault();
     // Grab values of name and products
-    const outfit_name = document.querySelector('#fitName').value.trim(); // Need to add id of input field
-    console.log(outfit_name)
+    const outfit_name = document.querySelector('#fitName').value.trim();
 
-    const productIds = []; // Need to add functionaltiy to add product ids to array
+    const productIds = [];
 
     // Iterate through all elements with the class 'piece-card' to collect their data-id attributes
     document.querySelectorAll('.piece-card').forEach((card) => {
@@ -14,10 +13,7 @@ const createOutfitHandler = async (event) => {
             productIds.push(id);
         }
     });
-
-    console.log(productIds)
-
-    // vVrify there is a name and products
+    // verify there is a name and products
     if (outfit_name && productIds.length > 0) {
         // Create post request to /api/outfit
         const response = await fetch('/api/outfit', {
@@ -27,7 +23,7 @@ const createOutfitHandler = async (event) => {
         });
         // Redirect if complete
         if (response.ok) {
-            document.location.replace('/'); // redirect to homepage
+            document.location.replace('/yours'); // redirect to homepage
         } else {
             alert(response.statusText)
         }
