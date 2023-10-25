@@ -4,8 +4,10 @@
         <div class="row">
             <div class="col">
                     <div class="yours-card text-center border" data-id="{{outfit.id}}">
-                        <h2 class="mx-auto mt-2">{{outfit_name}}</h2>
+                        <h2 class="mx-auto mt-2">{{fit.outfit_name}}</h2>
                         <p class="mx-auto text-dark">by @{{fit.user.name}}</p>
+                        <p class="mx-auto text-dark">👍 {{fit.likes}}</p>
+
                         <div class="image-wrapper">
                             <div class="container fit-container" id="your-fit">
                                 {{#each fit.products as |product|}}
