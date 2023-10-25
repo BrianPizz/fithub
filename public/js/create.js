@@ -1,7 +1,6 @@
 // Create new outfit
 const createOutfitHandler = async (event) => {
-    // Changed to click event listener
-    // event.preventDefault();
+    event.preventDefault();
     // Grab values of name and products
     const outfitName = document.querySelector('#fitNameInput').value.trim(); // Need to add id of input field
     const productIds = []; // Need to add functionaltiy to add product ids to array
