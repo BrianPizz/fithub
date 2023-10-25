@@ -44,7 +44,7 @@ const deleteOufitHandler = async (event) => {
         });
         // Reload once outfit is deleted
         if(response.ok){
-            document.location.replace('/') // reload page or relocate
+            document.location.replace('/yours') // reload page or relocate
         } else {
             alert('Failed to delete outfit');
         }

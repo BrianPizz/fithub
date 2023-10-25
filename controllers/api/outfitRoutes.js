@@ -32,9 +32,10 @@ router.post('/', async (req, res) => {
 // Delete user outfit
 router.delete('/:id', async (req, res) => {
     try {
-        const deleteFit = await Outfit.delete({
+        const outfitID = req.params.id;
+        const deleteFit = await Outfit.destroy({
             where: {
-                id: req.params.id,
+                id: outfitID,
                 user_id: req.session.user_id
             }
         });
@@ -82,7 +83,7 @@ router.put('/:id', async (req, res) => {
         await OutfitProducts.bulkCreate(newFitProducts);
         
         res.status(201).json({ message: 'Outfit successfully updated' });
-        
+
     } catch (err) {
         res.status(500).json(err);
     }
