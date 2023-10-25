@@ -74,7 +74,8 @@ router.get('/fit/:id', authCheck, async (req, res) => {
     try {
         const id = req.params.id;
         const selectedFit = await Outfit.findByPk(id, {
-            include: [{ model: Product, through: OutfitProducts }]
+            include: [{ model: Product, through: OutfitProducts },
+                { model: User}]
         });
 
         if (!selectedFit) {

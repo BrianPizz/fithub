@@ -1,19 +1,30 @@
 <div>
     <h2 id="section-title"> S E L E C T E D  F I T </h2>
-    <div class="section-wrapper col-2"></div>
-    <div class="container-fluid col-8">
-        <div class="card" id="new-fit-1">
-            <div class="image-wrapper">
-                {{#each fit.products as |product|}}
-                <div class="container fit-container col-10" id="new-fit-1">
-                    <div class="card" id="category-id-{{product.category_id}}">
-                        <img src="{{product.image_url}}"
-                            class="card-img object-fit-fill" alt="category-id-{{product.category_id}}-img">
+
+
+    <div class="container-fluid" id="yours">
+        <div class="row">
+            <div class="col">
+                    <div class="yours-card text-center border" data-id="{{outfit.id}}">
+                        <h2 class="mx-auto mt-2">{{outfit_name}}</h2>
+                        <p class="mx-auto text-dark">by @{{fit.user.name}}</p>
+                        <div class="image-wrapper">
+                            <div class="container fit-container" id="your-fit">
+                                {{#each fit.products as |product|}}
+                                <div id="category-id-{{product.category_id}}">
+                                    <h4 class="text-dark">{{product.brand_name}}</h4>
+                                    <p class="text-dark lead">${{product.retail_price}}</p>
+                                    <img src="{{product.image_url}}" class="card-img object-fit-fill"
+                                        alt="top-card-img">
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
                     </div>
-                </div>
-                {{/each}}
             </div>
         </div>
     </div>
-    <div class="section-wrapper col-2"></div>
+
 </div>
+
+
