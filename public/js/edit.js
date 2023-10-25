@@ -47,9 +47,10 @@ const deleteOufitHandler = async (event) => {
 // Edit an outfit
 const toggleEditFit = async () => {
     console.log('clicked');
-    const editFitSection = document.getElementById('editFitSecton');
+    const editFitSection = document.getElementById('editFitSection');
+    console.log(editFitSection.style);
     if (editFitSection.style.display === 'none') {
-        editFitSection.style.display === 'block'
+        editFitSection.style.display = 'block'
     };
 };
 
