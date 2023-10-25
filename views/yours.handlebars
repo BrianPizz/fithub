@@ -3,18 +3,21 @@
     <div class="section-wrapper col-2"></div>
     <div class="container-fluid col-8" id="yours">
         {{#each outfits as |outfit|}}
-        <div class="card" id="your-card">
-            <h3 class="mx-auto">{{outfit_name}}</h3>
-            <div class="image-wrapper">
-                <div class="container fit-container" id="your-fit">
-                    {{#each outfit.products as |product|}}
-                    <div class="card" id="category-id-{{product.category_id}}">
-                        <img src="{{product.image_url}}" class="card-img object-fit-fill" alt="top-card-img">
+        <a href="/edit/{{outfit.id}}">
+            <div id="yours-card" data-id="{{outfit.id}}">
+                <h3 class="mx-auto">{{outfit.outfit_name}}</h3>
+                <p class="mx-auto">by @{{user.name}}</p>
+                <div class="image-wrapper">
+                    <div class="container fit-container" id="your-fit">
+                        {{#each outfit.products as |product|}}
+                        <div class="card" id="category-id-{{product.category_id}}">
+                            <img src="{{product.image_url}}" class="card-img object-fit-fill" alt="top-card-img">
+                        </div>
+                        {{/each}}
                     </div>
-                    {{/each}}
                 </div>
             </div>
-        </div>
+        </a>
         {{/each}}
     </div>
     <div class="section-wrapper col-2"></div>

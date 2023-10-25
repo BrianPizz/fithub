@@ -2,26 +2,34 @@
 const updateOutfitHandler = async (event) => {
     event.preventDefault();
     // Grab values of name and products
-    const outfitName = document.querySelector('').value.trim(); // Need to add id of input field
-    const productIds = []; // Need to add functionaltiy to add product ids to array
-    //Sstore outfit id in data id attribute
-    const id = document.querySelector('').getAttribute('data-id'); // add edit button class
+    const outfit_name = document.querySelector('#fitName').value.trim();
 
-    // Verify name, products, and id
-    if (outfitName && productIds.length > 0 && id){
-        // Rreate a put request to /api/outfit/id
+    const productIds = [];
+
+    const id = event.target.getAttribute('data-id');
+
+    // Iterate through all elements with the class 'piece-card' to collect their data-id attributes
+    document.querySelectorAll('.piece-card').forEach((card) => {
+        if (card.classList.contains('active')) {
+            const id = card.getAttribute('data-id');
+            productIds.push(id);
+        }
+    });
+    // verify there is a name and products
+    if (outfit_name && productIds.length > 0) {
+        // Create post request to /api/outfit
         const response = await fetch(`/api/outfit/${id}`, {
             method: 'PUT',
-            body: JSON.stringify({ outfitName, productIds }),
-            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify({ outfit_name, productIds }),
+            headers: { 'Content-Type': 'application/json' },
         });
-        // Reload once completed
-        if(response.ok) {
-            document.location.replace('/') // reload or relocate
+        // Redirect if complete
+        if (response.ok) {
+            document.location.replace('/yours'); // redirect to homepage
         } else {
-            alert('Failed to update outfit')
+            alert(response.statusText)
         }
-    }; 
+    }
 };
 
 // Delete an outfit
@@ -36,13 +44,23 @@ const deleteOufitHandler = async (event) => {
         });
         // Reload once outfit is deleted
         if(response.ok){
-            document.location.replace('/') // reload page or relocate
+            document.location.replace('/yours') // reload page or relocate
         } else {
             alert('Failed to delete outfit');
         }
     }
 };
 
+// Edit an outfit
+const toggleEditFit = async () => {
+    const editFitSection = document.getElementById('editFitSection');
+    console.log(editFitSection.style);
+    if (editFitSection.style.display === 'none') {
+        editFitSection.style.display = 'block'
+    };
+};
+
 // Event listeners
-document.querySelector('').addEventListener('click', updateOutfitHandler); // Need to add update button class
-document.querySelector('').addEventListener('click', deleteOufitHandler); // Need to add delete button class
+document.querySelector('#generate').addEventListener('click', updateOutfitHandler); // Need to add id of form
+document.getElementById('deleteBtn').addEventListener('click', deleteOufitHandler); // Need to add delete button class
+document.getElementById('showEditBtn').addEventListener('click', toggleEditFit);
