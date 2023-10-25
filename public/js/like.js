@@ -1,3 +1,4 @@
+
 const likeOufitHandler = async (event) => {
     event.preventDefault();
     // Outfit id will be stored in data id
@@ -17,4 +18,9 @@ const likeOufitHandler = async (event) => {
 };
 
 // Event listener
-document.querySelector('').addEventListener('click', likeOufitHandler);
+const likeButton = document.querySelectorAll('.like-button');
+// event delegation for likes button
+likeButton.forEach((button) => {
+    button.addEventListener('click', likeOufitHandler);
+});
+
