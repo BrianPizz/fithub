@@ -8,12 +8,15 @@
                 <a href="/fit/{{outfit.id}}">
                     <div class="yours-card text-center border" data-id="{{outfit.id}}">
                         <h2 class="mx-auto mt-2">{{outfit.outfit_name}}</h2>
-                        <p class="mx-auto">by @{{user.name}}</p>
+                        <h5 class="mx-auto text-dark lead">by @{{outfit.user.name}}</h5>
                         <div class="image-wrapper">
                             <div class="container fit-container" id="your-fit">
                                 {{#each outfit.products as |product|}}
                                 <div id="category-id-{{product.category_id}}">
                                     <h4 class="text-dark">{{product.brand_name}}</h4>
+                                    {{#if product.season}}   
+                                    <h5 class="mx-auto text-dark lead">{{product.season}}</h5>
+                                    {{/if}}
                                     <p class="text-dark lead">${{product.retail_price}}</p>
                                     <img src="{{product.image_url}}" class="card-img object-fit-fill"
                                         alt="top-card-img">
