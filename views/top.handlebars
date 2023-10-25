@@ -1,4 +1,3 @@
-
 <div>
     <h2 id="section-title">T O P F I T S</h2>
     <div class="container-fluid" id="yours">
@@ -14,7 +13,7 @@
                                 {{#each outfit.products as |product|}}
                                 <div id="category-id-{{product.category_id}}">
                                     <h4 class="text-dark">{{product.brand_name}}</h4>
-                                    {{#if product.season}}   
+                                    {{#if product.season}}
                                     <h5 class="mx-auto text-dark lead">{{product.season}}</h5>
                                     {{/if}}
                                     <p class="text-dark lead">${{product.retail_price}}</p>
