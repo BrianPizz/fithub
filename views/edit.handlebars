@@ -1,6 +1,38 @@
 <!-- _______________________________________________ View Selected Outfit _____________________________________________________ -->
 
 <div>
+    <h2 id="section-title"> S E L E C T E D F I T </h2>
+    <div class="container-fluid" id="yours">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="yours-card text-center border" data-id="{{outfit.id}}">
+                    <h2 class="mx-auto mt-2">{{fit.outfit_name}}</h2>
+                    <p class="mx-auto text-dark">by @{{fit.user.name}}</p>
+                    <div class="image-wrapper">
+                        <div class="container fit-container" id="your-fit">
+                            {{#each fit.products as |product|}}
+                            <div id="category-id-{{product.category_id}}">
+                                <h4 class="text-dark">{{product.brand_name}}</h4>
+                                <p class="text-dark lead">${{product.retail_price}}</p>
+                                <img src="{{product.image_url}}" class="card-img object-fit-fill" alt="top-card-img">
+                            </div>
+                            {{/each}}
+                            <button type="button" class="btn" id="showEditBtn">
+                                <h3>E D I T</h3>
+                            </button>
+                            <button type="button" class="btn" id="deleteBtn">
+                                <h4 data-id="{{fit.id}}">D E L E T E</h4>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{!-- <div>
     <pre></pre>
     <h2 id="section-title"> S E L E C T E D F I T </h2>
     <div class="section-wrapper col-2"></div>
@@ -25,7 +57,7 @@
     <button type="button" id="deleteBtn">
         <h4 data-id="{{fit.id}}">D E L E T E</h4>
     </button>
-</div>
+</div> --}}
 <!-- _______________________________________________ Edit Outfit _____________________________________________________ -->
 
 <div id="editFitSection" style="display: none">
@@ -375,5 +407,6 @@
         </div>
     </div>
 </div>
-{{!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+{{!--
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 <script src="/js/edit.js"></script>
