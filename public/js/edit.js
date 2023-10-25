@@ -61,6 +61,6 @@ const toggleEditFit = async () => {
 };
 
 // Event listeners
-document.querySelector('#generate').addEventListener('click', updateOutfitHandler); // Need to add id of form
-document.getElementById('deleteBtn').addEventListener('click', deleteOufitHandler); // Need to add delete button class
+document.querySelector('#generate').addEventListener('click', updateOutfitHandler);
+document.getElementById('deleteBtn').addEventListener('click', deleteOufitHandler);
 document.getElementById('showEditBtn').addEventListener('click', toggleEditFit);

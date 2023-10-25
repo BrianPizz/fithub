@@ -31,4 +31,4 @@ const createOutfitHandler = async (event) => {
 };
 
 // Event listener
-document.querySelector('#generate').addEventListener('click', createOutfitHandler); // Need to add id of form 
+document.querySelector('#generate').addEventListener('click', createOutfitHandler);
