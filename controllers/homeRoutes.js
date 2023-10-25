@@ -74,7 +74,8 @@ router.get('/fit/:id', authCheck, async (req, res) => {
     try {
         const id = req.params.id;
         const selectedFit = await Outfit.findByPk(id, {
-            include: [{ model: Product, through: OutfitProducts }]
+            include: [{ model: Product, through: OutfitProducts },
+                { model: User}]
         });
 
         if (!selectedFit) {
@@ -95,7 +96,8 @@ router.get('/edit/:id', authCheck, async (req, res) => {
     try {
         // Find user selected outfit
         const selectedFit = await Outfit.findByPk(req.params.id, {
-            include: [{ model: Product, through: OutfitProducts }]
+            include: [{ model: Product, through: OutfitProducts },
+                { model: User}]
         });
 
         if (!selectedFit) {

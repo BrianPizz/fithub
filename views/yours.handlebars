@@ -1,24 +1,29 @@
 <div>
     <h2 id="section-title">Y O U R S</h2>
-    <div class="section-wrapper col-2"></div>
-    <div class="container-fluid col-8" id="yours">
-        {{#each outfits as |outfit|}}
-        <a href="/edit/{{outfit.id}}">
-            <div id="yours-card" data-id="{{outfit.id}}">
-                <h3 class="mx-auto">{{outfit.outfit_name}}</h3>
-                <p class="mx-auto">by @{{user.name}}</p>
-                <div class="image-wrapper">
-                    <div class="container fit-container" id="your-fit">
-                        {{#each outfit.products as |product|}}
-                        <div class="card" id="category-id-{{product.category_id}}">
-                            <img src="{{product.image_url}}" class="card-img object-fit-fill" alt="top-card-img">
+    <div class="container-fluid" id="yours">
+        <div class="row">
+            {{#each outfits as |outfit|}}
+            <div class="col-3">
+                <a href="/edit/{{outfit.id}}">
+                    <div class="yours-card text-center border" data-id="{{outfit.id}}">
+                        <h2 class="mx-auto mt-2">{{outfit.outfit_name}}</h2>
+                        <p class="mx-auto">by @{{user.name}}</p>
+                        <div class="image-wrapper">
+                            <div class="container fit-container" id="your-fit">
+                                {{#each outfit.products as |product|}}
+                                <div id="category-id-{{product.category_id}}">
+                                    <h4 class="text-dark">{{product.brand_name}}</h4>
+                                    <p class="text-dark lead">${{product.retail_price}}</p>
+                                    <img src="{{product.image_url}}" class="card-img object-fit-fill"
+                                        alt="top-card-img">
+                                </div>
+                                {{/each}}
+                            </div>
                         </div>
-                        {{/each}}
                     </div>
-                </div>
+                </a>
             </div>
-        </a>
-        {{/each}}
+            {{/each}}
+        </div>
     </div>
-    <div class="section-wrapper col-2"></div>
 </div>
