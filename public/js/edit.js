@@ -1,33 +1,40 @@
 // Update an outfit
-const updateOutfitHandler = async (event) => {
+const createOutfitHandler = async (event) => {
     event.preventDefault();
     // Grab values of name and products
-    const outfitName = document.querySelector('#fitNameInput').value.trim(); // Need to add id of input field
-    const productIds = []; // Need to add functionaltiy to add product ids to array
-    //Store outfit id in data id attribute
-    const id = document.querySelector('.updateBtn').getAttribute('data-id'); // add edit button class
+    const outfit_name = document.querySelector('#fitName').value.trim();
 
-    // Verify name, products, and id
-    if (outfitName && productIds.length > 0 && id){
-        // Rreate a put request to /api/outfit/id
+    const productIds = [];
+
+    const id = event.target.getAttribute('data-id');
+
+    // Iterate through all elements with the class 'piece-card' to collect their data-id attributes
+    document.querySelectorAll('.piece-card').forEach((card) => {
+        if (card.classList.contains('active')) {
+            const id = card.getAttribute('data-id');
+            productIds.push(id);
+        }
+    });
+    // verify there is a name and products
+    if (outfit_name && productIds.length > 0) {
+        // Create post request to /api/outfit
         const response = await fetch(`/api/outfit/${id}`, {
             method: 'PUT',
-            body: JSON.stringify({ outfitName, productIds }),
-            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify({ outfit_name, productIds }),
+            headers: { 'Content-Type': 'application/json' },
         });
-        // Reload once completed
-        if(response.ok) {
-            document.location.replace('/') // reload or relocate
+        // Redirect if complete
+        if (response.ok) {
+            document.location.replace('/yours'); // redirect to homepage
         } else {
-            alert('Failed to update outfit')
+            alert(response.statusText)
         }
-    }; 
+    }
 };
 
 // Delete an outfit
 const deleteOufitHandler = async (event) => {
     event.preventDefault();
-    console.log('clicked');
     // Outfit id will be stored in data id
     if (event.target.hasAttribute('data-id')) {
         const id = event.target.getAttribute('data-id');
@@ -46,7 +53,6 @@ const deleteOufitHandler = async (event) => {
 
 // Edit an outfit
 const toggleEditFit = async () => {
-    console.log('clicked');
     const editFitSection = document.getElementById('editFitSection');
     console.log(editFitSection.style);
     if (editFitSection.style.display === 'none') {
@@ -54,9 +60,7 @@ const toggleEditFit = async () => {
     };
 };
 
-console.log('edit page');
-
 // Event listeners
-document.getElementById('saveBtn').addEventListener('click', updateOutfitHandler); // Need to add update button class
+document.querySelector('#generate').addEventListener('click', createOutfitHandler); // Need to add id of form
 document.getElementById('deleteBtn').addEventListener('click', deleteOufitHandler); // Need to add delete button class
 document.getElementById('showEditBtn').addEventListener('click', toggleEditFit);
