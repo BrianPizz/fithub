@@ -13,7 +13,10 @@ router.get('/yours', authCheck, async (req, res) => {
     try {
         const userData = await Outfit.findAll({
             where: { user_id: req.session.user_id },
-            include: [{ model: Product, through: OutfitProducts }]
+            include: [
+                { model: Product, through: OutfitProducts },
+                { model: User }
+            ]
         });
 
         if (!userData) {
@@ -107,8 +110,10 @@ router.get('/top', authCheck, async (req, res) => {
         const topFits = await Outfit.findAll({
             order: [['likes', 'DESC']],
             // limit: 3,
-            include: [{ model: Product, through: OutfitProducts },
-            { model: User}]
+            include: [
+                { model: Product, through: OutfitProducts },
+                { model: User}
+            ]
         });
 
         if (!topFits) {
