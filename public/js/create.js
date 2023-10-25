@@ -5,11 +5,18 @@ const creatOutfitHandler = async (event) => {
     const outfitName = document.querySelector('#fitName').value.trim(); // Need to add id of input field
     console.log(outfitName)
 
-
-
-
     const productIds = []; // Need to add functionaltiy to add product ids to array
+
+    // Iterate through all elements with the class 'piece-card' to collect their data-id attributes
+    document.querySelectorAll('.piece-card').forEach((card) => {
+        if (card.classList.contains('active')) {
+            const id = card.getAttribute('data-id');
+            productIds.push(id);
+        }
+    });
+
     console.log(productIds)
+
     // vVrify there is a name and products
     if (outfitName && productIds.length > 0) {
         // Create post request to /api/outfit
