@@ -23,7 +23,7 @@ This project was created to provide the user with an application to display thei
 
 ## Usage
 
-Navigate to this [website]().
+Navigate to this [website](https://morning-ravine-18715-2df03199dbf8.herokuapp.com/).
 
 First time users must sign up with a username, email, and password by pressing the "sign-up" button in the top-left corner of the landing page. Returning users will be able to log in. Users can create new outfits in the "Create" tab. Then their saved outfits will be displayed in the "Yours" tab of the nav bar. Any of these outfits can be selected by clicking on the image, allowing user to update and delete each outfit. The "Top" tab of the nav bar will display all users' saved outfits ordered by most liked. Any of these can be selected by clicking on the image, allowing the logged in user to like the outfit.
 
