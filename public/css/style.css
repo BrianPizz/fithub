@@ -282,3 +282,30 @@ margin-top: -40px;
 #like-button {
     display: block;
 }
+
+.like-box {
+    background-color: rgb(62, 78, 254);
+    width: 25%;
+}
+
+.like-box:hover {
+    background-color: rgb(0, 0, 0);
+}
+
+@media screen and (max-width: 992px) {
+    .like-box {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .like-box {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .like-box {
+        width: 50%;
+    }
+}

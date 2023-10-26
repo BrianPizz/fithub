@@ -3,6 +3,7 @@ const likeOufitHandler = async (event) => {
     event.preventDefault();
     // Outfit id will be stored in data id
     if (event.target.hasAttribute('data-id')) {
+        console.log('clicked');
         const id = event.target.getAttribute('data-id');
         // Create post request to /api/outfit/like/id
         const response = await fetch(`/api/outfit/like/${id}`, {
@@ -21,6 +22,9 @@ const likeOufitHandler = async (event) => {
 const likeButton = document.querySelectorAll('.like-button');
 // event delegation for likes button
 likeButton.forEach((button) => {
-    button.addEventListener('click', likeOufitHandler);
+    button.addEventListener('click', function (event) {
+        event.preventDefault();
+        likeOufitHandler(event);
+    });
 });
 
