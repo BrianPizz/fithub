@@ -10,11 +10,13 @@ router.post('/', async (req, res) => {
         }
     */
     try {
+        // Creating new outfit associated with logged in user
         const newFit = await Outfit.create({
             outfit_name: req.body.outfit_name,
             user_id: req.session.user_id
         });
 
+        // Combining outfit with its products in OutfitProducts table
         if (newFit) {
             const productArr = req.body.productIds;
             const newFitProducts = productArr.map((productID) => ({ outfit_id: newFit.id, product_id: productID }));
@@ -32,6 +34,7 @@ router.post('/', async (req, res) => {
 // Delete user outfit
 router.delete('/:id', async (req, res) => {
     try {
+        // Destroying outfit by matching outfit id and logged in user's id
         const outfitID = req.params.id;
         const deleteFit = await Outfit.destroy({
             where: {
@@ -63,6 +66,7 @@ router.put('/:id', async (req, res) => {
         const outfitID = req.params.id;
         const productArr = req.body.productIds;
 
+        // Updating outfit with new name
         await Outfit.update(
             {
                 outfit_name: req.body.outfit_name
@@ -74,7 +78,8 @@ router.put('/:id', async (req, res) => {
                 }
             }
         );
-
+        
+        // Destroying old OutfitProducts by outfit id and re-create with new products
         await OutfitProducts.destroy({
             where: { outfit_id: outfitID }
         });
@@ -92,6 +97,7 @@ router.put('/:id', async (req, res) => {
 // Post route for liking an outfit
 router.post('/like/:id', async (req, res) => {
     try {
+        // Finding outfit by id and adding to likes column
         const fitData = await Outfit.findByPk(req.params.id);
         if (fitData) {
             fitData.likes += 1;

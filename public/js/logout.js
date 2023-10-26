@@ -13,4 +13,4 @@ const logoutHandler = async () => {
   };
 
 // Event listener
-document.querySelector("#LOGOUT").addEventListener("click", logoutHandler); // Need to add id of logout button
+document.querySelector("#LOGOUT").addEventListener("click", logoutHandler);

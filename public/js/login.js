@@ -44,5 +44,5 @@ const loginHandler = async (event) => {
 };
 
 // Event listeners
-document.querySelector('#signupButton').addEventListener('click', signupHandler); // Need to add id of form
+document.querySelector('#signupButton').addEventListener('click', signupHandler);
 document.querySelector('#loginButton').addEventListener('click', loginHandler);

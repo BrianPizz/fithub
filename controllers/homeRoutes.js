@@ -1,16 +1,25 @@
 const router = require('express').Router();
 const { Product, Outfit, OutfitProducts, Category, User } = require('../models');
-// Add authCheck to routes later
 const authCheck = require('../utils/auth');
 
-// Displaying landing page. Slide 4 of proposal.
+// Displaying landing page
 router.get('/', async (req, res) => {
     res.render('landing', {layout: false});
+});
+
+// Displaying login page
+router.get('/login', (req, res) => {
+    if (req.session.logged_in) {
+        res.redirect('/top');
+        return;
+    }
+    res.render('login', { layout: false });
 });
 
 // Displaying user's saved outfits
 router.get('/yours', authCheck, async (req, res) => {
     try {
+        // Finding all saved outfits by user id
         const userData = await Outfit.findAll({
             where: { user_id: req.session.user_id },
             include: [
@@ -45,7 +54,7 @@ router.get('/create', authCheck, async (req, res) => {
 // Route for top outfits page
 router.get('/top', authCheck, async (req, res) => {
     try {
-        // Top outfit data
+        // Finding top outfit data
         const topFits = await Outfit.findAll({
             order: [['likes', 'DESC']],
             // limit: 3,
@@ -69,9 +78,10 @@ router.get('/top', authCheck, async (req, res) => {
     }
 });
 
-// Route for view/edit selected outfit
+// Route for viewing selected outfit
 router.get('/fit/:id', authCheck, async (req, res) => {
     try {
+        // Finding user selected outfit
         const id = req.params.id;
         const selectedFit = await Outfit.findByPk(id, {
             include: [{ model: Product, through: OutfitProducts },
@@ -91,11 +101,12 @@ router.get('/fit/:id', authCheck, async (req, res) => {
     }
 });
 
-// Route for editing selected outfit
+// Route for user editing selected outfit
 router.get('/edit/:id', authCheck, async (req, res) => {
     try {
         // Find user selected outfit
-        const selectedFit = await Outfit.findByPk(req.params.id, {
+        const id = req.params.id;
+        const selectedFit = await Outfit.findByPk(id, {
             include: [{ model: Product, through: OutfitProducts },
                 { model: User}]
         });
@@ -111,16 +122,6 @@ router.get('/edit/:id', authCheck, async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
-});
-
-// Displaying login page
-router.get('/login', (req, res) => {
-    if (req.session.logged_in) {
-        res.redirect('/top');
-        return;
-    }
-
-    res.render('login', { layout: false });
 });
 
 module.exports = router;
